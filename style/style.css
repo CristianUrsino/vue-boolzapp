@@ -27,14 +27,64 @@ body{
 .h-0{
     height: 0;
 }
+.my-text-secondary{
+    color: var(--color-text-grey);
+    font-size: 0.8em;
+}
 /* *************GENERAL************ */
 img{
     width: 100%;
 }
 .img-contact{
-    position: relative;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
+    margin: 5px 0;
+}
+i{
+    color: var(--color-text-grey);
+}
+.icon-circle{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    margin: 5px 0;
+}
+.icon-circle i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--color-notification);
+}
+/* **********STRUCTURE******** */
+.headers{
+    background-color: var(--color-headers);
+}
+.notifications{
+    background-color: var(--color-notification);
+}
+.notifications .my-text-secondary{
+    color: var(--color-dark-grey);
+    text-decoration: underline;
+}
+.search,
+.contact-container{
+    background-color: var(--color-white);
+}
+.contact{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+.contact .img-contact{
+    width: 50px;
+    height: 50px;
+}
+.contact .time{
+    position: absolute;
+    top: 5px;
+    right: 0;
 }
