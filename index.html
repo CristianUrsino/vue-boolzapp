@@ -19,7 +19,21 @@
 <body>
     
     <div id="app">
-        {{contacts[0].id}}
+        <div class="debug container h-100">
+            <div class="row h-100 flex-nowrap">
+                <div class="col-12 col-md-4">
+                    <div class="row h-100 flex-column flex-nowrap debug">
+                        <div class="col-12 debug header">header</div>
+                        <div class="col-12 debug notifications">notifications</div>
+                        <div class="col-12 debug search">search</div>
+                        <div class="col-12 debug flex-grow-1 overflow-y-auto h-0"></div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    right
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

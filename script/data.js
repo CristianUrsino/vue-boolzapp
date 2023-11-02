@@ -1,4 +1,4 @@
-const contactsList = [
+export const contactsList = [
     {
         id: 1,
         name: 'Michele',

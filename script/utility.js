@@ -5,7 +5,7 @@
  *@param {number} max
  *@returns {number}
 */
-function randomInteger(min,max){
+export function randomInteger(min,max){
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 /** *
@@ -14,6 +14,6 @@ function randomInteger(min,max){
  *@param {number} x
  *@returns {boolean} se pari 'true' altrimenti 'false'
 */
-function pariODispari(x){
+export function pariODispari(x){
     return (x % 2 === 0) ? true : false;
 }
