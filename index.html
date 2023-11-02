@@ -39,7 +39,7 @@
                         <!-- NOTIFICATIONS -->
                         <div class="col-12 debug notifications d-flex py-1">
                             <div class="p-3 icon-circle me-3"><i class="fa-solid fa-house fa-lg"></i></div>
-                            <div>
+                            <div class="mt-1">
                                 <div>Ricevi notifiche di nuovi messaggi</div>
                                 <div class="my-text-secondary">Attiva notifiche desktop</div>
                             </div>
@@ -55,7 +55,7 @@
                         </div>
                         <!-- CONTACTS -->
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
-                            <div class="contact position-relative d-flex gap-2">
+                            <div class="contact position-relative d-flex gap-2 align-items-center">
                                 <figure class="img-contact ms-2"><img src="img/avatar_2.jpg" alt="immagine di 'Marco'"></figure>
                                 <div>
                                     <div>Marco</div>
@@ -66,8 +66,60 @@
                         </div>
                     </div>
                 </div>
+                <!-- --------RIGHT-------- -->
                 <div class="col-12 col-md-8">
-                    right
+                    <div class="row h-100 flex-column flex-nowrap debug ">
+                        <!-- RIGHT HEADER -->
+                        <div class="headers debug d-flex justify-content-between ">
+                            <div class="d-flex gap-1 align-items-center">
+                                <figure class="img-contact ms-2"><img src="img/avatar_2.jpg" alt="immagine di 'Marco'"></figure>
+                                <div>
+                                    <div>Marco</div>
+                                    <div class="my-text-secondary">Ultimo accesso</div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-house"></i>
+                                <i class="fa-solid fa-house"></i>
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                        </div>
+                        <!-- CHAT CONTAINER -->
+                        <div class="chat-container debug overflow-y-scroll h-0 flex-grow-1 py-4 px-5 ">
+                            <div class="debug p-1 message-sent clearfix">
+                                <div class="rounded debug d-flex align-items-center align-content-center">
+                                    <div class="mb-2 mt-1">messaggio mio</div>
+                                    <div class="my-text-secondary">12.00</div>
+                                </div>
+                            </div>
+                            <div class="debug p-1 message-sent clearfix">
+                                <div class="rounded debug d-flex align-items-center align-content-center">
+                                    <div class="mb-2 mt-1">messaggio mio</div>
+                                    <div class="my-text-secondary">12.00</div>
+                                </div>
+                            </div>
+                            <div class="debug p-1 message-received clearfix">
+                                <div class="rounded debug d-flex align-items-center align-content-center">
+                                    <div class="mb-2 mt-1">messaggio suo</div>
+                                    <div class="my-text-secondary">12.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MESSAGE CONTROLLER -->
+                        <div class="message-controller debug container-fluid">
+                            <div class="row flex-nowrap align-items-center my-2">
+                                <div class="col-1 text-center">
+                                    <i class=" fa-solid fa-house fa-lg"></i>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" value="" placeholder="Scrivi un messaggio">
+                                </div>
+                                <div class="col-1">
+                                    <i class="fa-solid fa-house fa-lg "></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
