@@ -31,6 +31,9 @@ body{
     color: var(--color-text-grey);
     font-size: 0.8em;
 }
+.active{
+    background-color: var(--color-light-icons);
+}
 /* *************GENERAL************ */
 img{
     width: 100%;

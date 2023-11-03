@@ -55,11 +55,13 @@
                         </div>
                         <!-- CONTACTS -->
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
-                            <div v-for="(contact,index) in contacts" :key="index" class="contact position-relative d-flex gap-2 align-items-center">
+                            <div v-for="(contact,index) in contacts" :key="contact.id"
+                             :class="[{'active': index === activeContact}, 'contact', 'position-relative', 'd-flex', 'gap-2', 'align-items-center']"
+                             @click="isTheActive(index)">
                                 <figure class="img-contact ms-2"><img :src="contact.avatar" :alt="'immagine di'+ contact.name"></figure>
                                 <div>
                                     <div>{{contact.name}}</div>
-                                    <div class="my-text-secondary">{{foundLastMessage(index)}}</div>
+                                    <div class="my-text-secondary">{{LastMessageReceived(index)}}</div>
                                 </div>
                                 <div class="my-text-secondary time">12.00</div>
                             </div>
@@ -72,10 +74,10 @@
                         <!-- RIGHT HEADER -->
                         <div class="headers debug d-flex justify-content-between ">
                             <div class="d-flex gap-1 align-items-center">
-                                <figure class="img-contact ms-2"><img src="img/avatar_2.jpg" alt="immagine di 'Marco'"></figure>
+                                <figure class="img-contact ms-2"><img :src="contacts[activeContact].avatar" alt="immagine di 'Marco'"></figure>
                                 <div>
-                                    <div>Marco</div>
-                                    <div class="my-text-secondary">Ultimo accesso</div>
+                                    <div>{{contacts[activeContact].name}}</div>
+                                    <div class="my-text-secondary">Ultimo accesso il {{dataLastMassage(activeContact)}}</div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center gap-2">
@@ -85,23 +87,11 @@
                             </div>
                         </div>
                         <!-- CHAT CONTAINER -->
-                        <div class="chat-container debug overflow-y-scroll h-0 flex-grow-1 py-4 px-5 ">
-                            <div class="debug p-1 message-sent clearfix">
+                        <div class="chat-container debug overflow-y-scroll h-0 flex-grow-1 py-4 px-5 " >
+                            <div v-for="message in contacts[activeContact].messages" :class="['debug', 'p-1', 'message-'+message.status, 'clearfix']" >
                                 <div class="rounded debug d-flex align-items-center align-content-center">
-                                    <div class="mb-2 mt-1">messaggio mio</div>
-                                    <div class="my-text-secondary">12.00</div>
-                                </div>
-                            </div>
-                            <div class="debug p-1 message-sent clearfix">
-                                <div class="rounded debug d-flex align-items-center align-content-center">
-                                    <div class="mb-2 mt-1">messaggio mio</div>
-                                    <div class="my-text-secondary">12.00</div>
-                                </div>
-                            </div>
-                            <div class="debug p-1 message-received clearfix">
-                                <div class="rounded debug d-flex align-items-center align-content-center">
-                                    <div class="mb-2 mt-1">messaggio suo</div>
-                                    <div class="my-text-secondary">12.00</div>
+                                    <div class="mb-2 mt-1">{{message.message}}</div>
+                                    <div class="my-text-secondary">{{message.date}}</div>
                                 </div>
                             </div>
                         </div>
