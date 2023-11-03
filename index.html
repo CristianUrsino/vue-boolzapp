@@ -55,11 +55,11 @@
                         </div>
                         <!-- CONTACTS -->
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
-                            <div class="contact position-relative d-flex gap-2 align-items-center">
-                                <figure class="img-contact ms-2"><img src="img/avatar_2.jpg" alt="immagine di 'Marco'"></figure>
+                            <div v-for="(contact,index) in contacts" :key="index" class="contact position-relative d-flex gap-2 align-items-center">
+                                <figure class="img-contact ms-2"><img :src="contact.avatar" :alt="'immagine di'+ contact.name"></figure>
                                 <div>
-                                    <div>Marco</div>
-                                    <div class="my-text-secondary">Ultimo messaggio inviato</div>
+                                    <div>{{contact.name}}</div>
+                                    <div class="my-text-secondary">{{foundLastMessage(index)}}</div>
                                 </div>
                                 <div class="my-text-secondary time">12.00</div>
                             </div>
