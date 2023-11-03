@@ -34,6 +34,9 @@ body{
 .active{
     background-color: var(--color-light-icons);
 }
+.active .my-text-secondary{
+    color: var(--color-dark-grey);
+}
 /* *************GENERAL************ */
 img{
     width: 100%;

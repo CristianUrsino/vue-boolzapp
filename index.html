@@ -51,13 +51,13 @@
                             <div class="row">
                                 <label for="search" class="col-sm-2 col-form-label text-center"><i class="fa-solid fa-house my-text-secondary"></i></label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext h-100 my-text-secondary" id="search" value="" placeholder="cerca o inizia una nuova chat">
+                                <input v-model="search" type="text" class="form-control-plaintext h-100 my-text-secondary" id="search" placeholder="cerca o inizia una nuova chat" @keyup="filterContacts">
                                 </div>
                             </div>
                         </div>
                         <!-- CONTACTS -->
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
-                            <div v-for="(contact,index) in contacts" :key="contact.id"
+                            <div v-for="(contact,index) in filteredContacts" :key="contact.id"
                              :class="[{'active': index === activeContact}, 'contact', 'position-relative', 'd-flex', 'gap-2', 'align-items-center']"
                              @click="isTheActive(index)">
                                 <figure class="img-contact ms-2"><img :src="contact.avatar" :alt="'immagine di'+ contact.name"></figure>

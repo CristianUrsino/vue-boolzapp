@@ -11,6 +11,8 @@ const { createApp } = Vue;
         contacts : contactsList,
         activeContact : 0,
         newMessage : '',
+        filteredContacts : contactsList,
+        search : '',
       }
     },
     methods:{
@@ -37,7 +39,7 @@ const { createApp } = Vue;
         return '';
       },
       addNewMessage(){
-        if(this.newMessage !== ''){
+        if(this.newMessage.trim() !== ''){
           this.contacts[this.activeContact].messages.push({
             date: completeDate,
             message: this.newMessage,
@@ -55,6 +57,19 @@ const { createApp } = Vue;
             status: 'received'
           });
         },2000);
+      },
+      filterContacts(){
+        if(this.search.trim() !== ''){
+          this.filteredContacts = [];
+          this.contacts.forEach(contact => {
+            if(contact.name.toLowerCase().includes(this.search)){
+              this.filteredContacts.push(contact);
+            }
+          });
+        }else{
+          this.filteredContacts = this.contacts;
+        }
+        console.log(this.filteredContacts);
       }
     },
     amounted() {
