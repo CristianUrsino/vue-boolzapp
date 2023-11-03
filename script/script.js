@@ -1,6 +1,8 @@
 import {contactsList} from './data.js';
 import {randomInteger} from './utility.js';
 import {pariODispari} from './utility.js';
+const dt = luxon.DateTime;
+const completeDate = dt.now().setLocale('it').toFormat('dd//yyyy hh:mm:ss');
 const { createApp } = Vue;
 
   createApp({
@@ -8,6 +10,7 @@ const { createApp } = Vue;
       return {
         contacts : contactsList,
         activeContact : 0,
+        newMessage : '',
       }
     },
     methods:{
@@ -32,6 +35,26 @@ const { createApp } = Vue;
           j--;
         }
         return '';
+      },
+      addNewMessage(){
+        if(this.newMessage !== ''){
+          this.contacts[this.activeContact].messages.push({
+            date: completeDate,
+            message: this.newMessage,
+            status: 'sent'
+          });
+          this.newMessage = '';
+          this.response();
+        }
+      },
+      response(){
+        setTimeout(()=>{
+          this.contacts[this.activeContact].messages.push({
+            date: completeDate,
+            message: 'ok',
+            status: 'received'
+          });
+        },2000);
       }
     },
     amounted() {

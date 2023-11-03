@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;1,900&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
+
     <title>BoolZapp</title>
 </head>
 <body>
@@ -102,7 +104,7 @@
                                     <i class=" fa-solid fa-house fa-lg"></i>
                                 </div>
                                 <div class="col-10">
-                                    <input type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" value="" placeholder="Scrivi un messaggio">
+                                    <input v-model="newMessage" type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" placeholder="Scrivi un messaggio" @keyup.enter="addNewMessage">
                                 </div>
                                 <div class="col-1">
                                     <i class="fa-solid fa-house fa-lg "></i>
@@ -115,6 +117,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="script/script.js" type="module"></script>
 </body>
