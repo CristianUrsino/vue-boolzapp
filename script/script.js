@@ -3,7 +3,6 @@ import {randomInteger} from './utility.js';
 import {pariODispari} from './utility.js';
 const dt = luxon.DateTime;
 const completeDate = dt.now().setLocale('it').toFormat('dd//yyyy hh:mm:ss');
-const shortDate = dt.now().setLocale('it').toFormat('ìhh:mm');
 const { createApp } = Vue;
 
   createApp({
@@ -60,7 +59,6 @@ const { createApp } = Vue;
         this.contactStatusText = 'online';
         setTimeout(() => {
           this.contactStatusText = 'Sta scrivendo...';
-          console.log(this.contactStatus + '           ' + this.contactStatusText);
           setTimeout(()=>{
             this.contacts[this.activeContact].messages.push({
               date: completeDate,
@@ -103,6 +101,12 @@ const { createApp } = Vue;
         }else{
           this.iconSendMessage = false;
         }
+      },
+      deliteAllMessages(){
+        this.contacts[this.activeContact].messages = [];
+      },
+      deliteChat(){
+        this.contacts.splice(this.activeContact,1);
       }
     },
     amounted() {

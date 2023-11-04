@@ -65,7 +65,7 @@
                                     <div>{{contact.name}}</div>
                                     <div class="my-text-secondary">{{LastMessageReceived(index)}}</div>
                                 </div>
-                                <div class="my-text-secondary time">12.00</div>
+                                <div class="my-text-secondary time">{{dataLastMassage(activeContact)}}</div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,14 @@
                             <div class="d-flex align-items-center gap-3 me-3">
                                 <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                                 <i class="fa-solid fa-paperclip fa-lg"></i>
-                                <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
+                                <div><i class="fa-solid fa-ellipsis-vertical fa-lg clickable" role="button" data-bs-toggle="dropdown"></i>
+                                    <ul class="dropdown-menu">
+                                        <div>
+                                            <li class="clickable" @click="deliteAllMessages"><a class="dropdown-item">Elimina messaggi</a></li>
+                                            <li class="clickable" @click="deliteChat"><a class="dropdown-item">Elimina chat</a></li>
+                                        </div>
+                                    </ul>  
+                                </div>
                             </div>
                         </div>
                         <!-- CHAT CONTAINER -->
@@ -102,7 +109,6 @@
                                             <div v-if="!moreInfo">
                                                 <li @click="showInfo"><a class="dropdown-item">Info</a></li>
                                                 <li @click="deliteMessage(message)"><a class="dropdown-item">Elimina</a></li>
-                                                <!-- CONTINUARE, ICONA TORNA INDIETRO ED INFO -->
                                             </div>
                                             <div v-else="">
                                                 <div class="d-flex justify-content-around">
