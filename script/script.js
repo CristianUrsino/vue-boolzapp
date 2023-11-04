@@ -14,6 +14,7 @@ const { createApp } = Vue;
         filteredContacts : contactsList,
         search : '',
         moreInfo:false,
+        iconSendMessage: false,
       }
     },
     methods:{
@@ -46,6 +47,7 @@ const { createApp } = Vue;
             message: this.newMessage,
             status: 'sent'
           });
+          this.iconSendMessage = false;
           this.newMessage = '';
           this.response();
         }
@@ -83,6 +85,13 @@ const { createApp } = Vue;
       },
       showInfo(){
         this.moreInfo = !this.moreInfo
+      },
+      showSendMessage(){
+        if(this.newMessage.trim() !== ''){
+          this.iconSendMessage = true;
+        }else{
+          this.iconSendMessage = false;
+        }
       }
     },
     amounted() {

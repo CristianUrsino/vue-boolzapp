@@ -125,10 +125,12 @@
                                     <i class="fa-regular fa-face-smile fa-lg"></i>
                                 </div>
                                 <div class="col-10">
-                                    <input v-model="newMessage" type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" placeholder="Scrivi un messaggio" @keyup.enter="addNewMessage">
+                                    <input v-model="newMessage" @keyup.enter="addNewMessage"
+                                    @keyup="showSendMessage" type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" placeholder="Scrivi un messaggio" >
                                 </div>
                                 <div class="col-1">
-                                    <i class="fa-solid fa-microphone fa-lg"></i>
+                                    <i v-if="iconSendMessage" @click="addNewMessage" class="fa-solid fa-play fa-lg"></i>
+                                    <i v-else class="fa-solid fa-microphone fa-lg"></i>
                                 </div>
                             </div>
                         </div>
