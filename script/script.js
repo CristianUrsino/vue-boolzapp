@@ -13,6 +13,7 @@ const { createApp } = Vue;
         newMessage : '',
         filteredContacts : contactsList,
         search : '',
+        moreInfo:false,
       }
     },
     methods:{
@@ -62,7 +63,7 @@ const { createApp } = Vue;
         if(this.search.trim() !== ''){
           this.filteredContacts = [];
           this.contacts.forEach(contact => {
-            if(contact.name.toLowerCase().includes(this.search)){
+            if(contact.name.toLowerCase().includes(this.search.toLowerCase())){
               this.filteredContacts.push(contact);
             }
           });
@@ -70,6 +71,18 @@ const { createApp } = Vue;
           this.filteredContacts = this.contacts;
         }
         console.log(this.filteredContacts);
+      },
+      deliteMessage(message){
+        let i=0;
+        while(i < this.contacts[this.activeContact].messages.length){
+          if(this.contacts[this.activeContact].messages[i] === message){
+            this.contacts[this.activeContact].messages.splice(i,1);
+          }
+          i++;
+        }
+      },
+      showInfo(){
+        this.moreInfo = !this.moreInfo
       }
     },
     amounted() {

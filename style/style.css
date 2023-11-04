@@ -21,9 +21,9 @@ body{
     line-height: 1.2em;
 }
 /* **************UTILITYS************* */
-.debug{
+/* .debug{
     border: 1px solid red;
-}
+} */
 .h-0{
     height: 0;
 }
@@ -36,6 +36,9 @@ body{
 }
 .active .my-text-secondary{
     color: var(--color-dark-grey);
+}
+.clickable{
+    cursor: pointer;
 }
 /* *************GENERAL************ */
 img{
@@ -109,10 +112,19 @@ i{
     background-color: var(--color-white);
     float: left;
 }
-.message-sent .my-text-secondary,
-.message-received .my-text-secondary{
+.message-sent div.my-text-secondary,
+.message-received div.my-text-secondary{
+    font-size: 1.2em;
     position: absolute;
     right: 5px;
+    top: 8px;
+}
+.message-sent .my-text-secondary.date,
+.message-received .my-text-secondary.date{
+    font-size: 0.6em;
+    position: absolute;
+    right: 5px;
+    top:auto;
     bottom: -2px;
 }
 .message-received>div,
@@ -122,4 +134,7 @@ i{
     min-height: 40px;
     padding: 5px;
     word-break: break-all;
+}
+.message-controller i{
+    color: var(--color-dark-grey);
 }

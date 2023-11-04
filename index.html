@@ -32,10 +32,10 @@
                                 <figure class="img-contact align-self-end"><img src="img/avatar_1.jpg" alt="mia img"></figure>
                                 <div>nome</div>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="fa-solid fa-house"></i>
-                                <i class="fa-solid fa-house"></i>
-                                <i class="fa-solid fa-house"></i>
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fa-solid fa-circle-notch fa-lg"></i>
+                                <i class="fa-solid fa-message fa-lg"></i>
+                                <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </div>
                         </div>
                         <!-- NOTIFICATIONS -->
@@ -49,7 +49,7 @@
                         <!-- SEARCH -->
                         <div class="col-12 debug search container-fluid">
                             <div class="row">
-                                <label for="search" class="col-sm-2 col-form-label text-center"><i class="fa-solid fa-house my-text-secondary"></i></label>
+                                <label for="search" class="col-sm-2 col-form-label text-center"><i class="fa-solid fa-magnifying-glass "></i></i></label>
                                 <div class="col-sm-10">
                                 <input v-model="search" type="text" class="form-control-plaintext h-100 my-text-secondary" id="search" placeholder="cerca o inizia una nuova chat" @keyup="filterContacts">
                                 </div>
@@ -82,18 +82,39 @@
                                     <div class="my-text-secondary">Ultimo accesso il {{dataLastMassage(activeContact)}}</div>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <i class="fa-solid fa-house"></i>
-                                <i class="fa-solid fa-house"></i>
-                                <i class="fa-solid fa-house"></i>
+                            <div class="d-flex align-items-center gap-3 me-3">
+                                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                                <i class="fa-solid fa-paperclip fa-lg"></i>
+                                <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </div>
                         </div>
                         <!-- CHAT CONTAINER -->
                         <div class="chat-container debug overflow-y-scroll h-0 flex-grow-1 py-4 px-5 " >
+                            
                             <div v-for="message in contacts[activeContact].messages" :class="['debug', 'p-1', 'message-'+message.status, 'clearfix']" >
                                 <div class="rounded debug d-flex align-items-center align-content-center">
-                                    <div class="mb-2 mt-1">{{message.message}}</div>
-                                    <div class="my-text-secondary">{{message.date}}</div>
+                                    <div class="mb-2 mt-1 pe-2">{{message.message}}</div>
+                                    <div class="dropdown  my-text-secondary">
+                                        <a class="dropdown-toggle  my-text-secondary" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <div v-if="!moreInfo">
+                                                <li @click="showInfo"><a class="dropdown-item">Info</a></li>
+                                                <li @click="deliteMessage(message)"><a class="dropdown-item">Elimina</a></li>
+                                                <!-- CONTINUARE, ICONA TORNA INDIETRO ED INFO -->
+                                            </div>
+                                            <div v-else="">
+                                                <div class="d-flex justify-content-around">
+                                                    <i class="fa-solid fa-arrow-left clickable" @click="showInfo"></i>
+                                                    <span class="text-center">INVIATO IL:</span>
+                                                </div>
+                                                <div >{{message.date}}</div>
+                                                <div v-if="message.status === 'sent'">Da: te</div>
+                                                <div v-else>Da: {{contacts[activeContact].name}}</div>
+                                            </div>
+                                        </ul>
+                                      </div>
+                                    <div class="my-text-secondary date">{{message.date}}</div>
                                 </div>
                             </div>
                         </div>
@@ -101,13 +122,13 @@
                         <div class="message-controller debug container-fluid">
                             <div class="row flex-nowrap align-items-center my-2">
                                 <div class="col-1 text-center">
-                                    <i class=" fa-solid fa-house fa-lg"></i>
+                                    <i class="fa-regular fa-face-smile fa-lg"></i>
                                 </div>
                                 <div class="col-10">
                                     <input v-model="newMessage" type="text" class="form-control-plaintext h-100 my-text-secondary p-2 rounded" id="message" placeholder="Scrivi un messaggio" @keyup.enter="addNewMessage">
                                 </div>
                                 <div class="col-1">
-                                    <i class="fa-solid fa-house fa-lg "></i>
+                                    <i class="fa-solid fa-microphone fa-lg"></i>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +138,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="script/script.js" type="module"></script>
