@@ -3,6 +3,7 @@ import {randomInteger} from './utility.js';
 import {pariODispari} from './utility.js';
 const dt = luxon.DateTime;
 const completeDate = dt.now().setLocale('it').toFormat('dd//yyyy hh:mm:ss');
+const shortDate = dt.now().setLocale('it').toFormat('ìhh:mm');
 const { createApp } = Vue;
 
   createApp({
@@ -15,6 +16,8 @@ const { createApp } = Vue;
         search : '',
         moreInfo:false,
         iconSendMessage: false,
+        contactStatus:false,
+        contactStatusText:'',
       }
     },
     methods:{
@@ -53,13 +56,21 @@ const { createApp } = Vue;
         }
       },
       response(){
-        setTimeout(()=>{
-          this.contacts[this.activeContact].messages.push({
-            date: completeDate,
-            message: 'ok',
-            status: 'received'
-          });
-        },2000);
+        this.contactStatus = true;
+        this.contactStatusText = 'online';
+        setTimeout(() => {
+          this.contactStatusText = 'Sta scrivendo...';
+          console.log(this.contactStatus + '           ' + this.contactStatusText);
+          setTimeout(()=>{
+            this.contacts[this.activeContact].messages.push({
+              date: completeDate,
+              message: 'ok',
+              status: 'received'
+            });
+            this.contactStatusText = 'online';
+            setTimeout(()=> {this.contactStatus = false}, 4000);
+          },2500);
+        }, 1500);
       },
       filterContacts(){
         if(this.search.trim() !== ''){
