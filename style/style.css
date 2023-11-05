@@ -8,6 +8,7 @@
 	--color-light-icons: #b1b1b1;
 	--color-sent-message: #d5f9ba;
 	--color-notification: #8edafc;
+    --color-green: #009688;
     --color-bg: linear-gradient(0deg, rgba(212,219,218,1) 80%, rgba(0,150,136,1) 80%);
 }
 body{
@@ -24,6 +25,9 @@ body{
 /* .debug{
     border: 1px solid red;
 } */
+.bold{
+    font-weight: bold;
+}
 .h-0{
     height: 0;
 }
@@ -39,6 +43,13 @@ body{
 }
 .clickable{
     cursor: pointer;
+}
+.my-bgc-green{
+    background-color: var(--color-green) !important;
+    color: var(--color-white) !important;
+}
+.my-text-green{
+    color: var(--color-green) !important;
 }
 /* *************GENERAL************ */
 img{

@@ -17,6 +17,9 @@ const { createApp } = Vue;
         iconSendMessage: false,
         contactStatus:false,
         contactStatusText:'',
+        newName:'',
+        newAvatar:'',
+        errorNewContact:false,
       }
     },
     methods:{
@@ -107,6 +110,28 @@ const { createApp } = Vue;
       },
       deliteChat(){
         this.contacts.splice(this.activeContact,1);
+      },
+      newContact(){
+        if(this.newName.trim() === ''){
+          this.errorNewContact = true;
+          console.log('name');
+          return
+        }
+        if(!this.newAvatar.includes('https://')){
+          this.errorNewContact = true;
+          console.log('avatar');
+          return
+        }
+        let currentId = this.contacts[this.contacts.length - 1].id +1;
+        this.contacts.push(
+          {
+            id: currentId,
+            name: this.newName,
+            avatar : this.newAvatar,
+            messages:[],
+          }
+        );
+        this.errorNewContact = false;
       }
     },
     amounted() {

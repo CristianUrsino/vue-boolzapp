@@ -34,7 +34,20 @@
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <i class="fa-solid fa-circle-notch fa-lg"></i>
-                                <i class="fa-solid fa-message fa-lg"></i>
+                                <div>
+                                    <i class="fa-solid fa-message fa-lg clickable" role="button" data-bs-toggle="dropdown" data-bs-auto-close="inside"></i>
+                                    <ul class="dropdown-menu">
+                                        <div class="my-text-green">
+                                            <div class="text-center bold">Aggiungi contatto</div>
+                                            <div class="text-center my-2">nome:</div>
+                                            <input type="text"  v-model="newName">
+                                            <div class="text-center my-2">link avatar:</div>
+                                            <input type="text my-2" v-model="newAvatar">
+                                            <div class="text-center"><button class="btn py-0 px-3 my-2 my-bgc-green" @click="newContact">Invia</button></div>
+                                            <div v-if="errorNewContact" class="text-danger">ERRORE inserire dati validi</div>
+                                        </div>
+                                    </ul>  
+                                </div>
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </div>
                         </div>
@@ -86,11 +99,12 @@
                             <div class="d-flex align-items-center gap-3 me-3">
                                 <i class="fa-solid fa-magnifying-glass fa-lg"></i>
                                 <i class="fa-solid fa-paperclip fa-lg"></i>
-                                <div><i class="fa-solid fa-ellipsis-vertical fa-lg clickable" role="button" data-bs-toggle="dropdown"></i>
+                                <div>
+                                    <i class="fa-solid fa-ellipsis-vertical fa-lg clickable" role="button" data-bs-toggle="dropdown"></i>
                                     <ul class="dropdown-menu">
-                                        <div>
-                                            <li class="clickable" @click="deliteAllMessages"><a class="dropdown-item">Elimina messaggi</a></li>
-                                            <li class="clickable" @click="deliteChat"><a class="dropdown-item">Elimina chat</a></li>
+                                        <div  class="">
+                                            <li class="clickable" @click="deliteAllMessages"><a class="dropdown-item my-text-green">Elimina messaggi</a></li>
+                                            <li class="clickable" @click="deliteChat"><a class="dropdown-item my-text-green">Elimina chat</a></li>
                                         </div>
                                     </ul>  
                                 </div>
@@ -107,15 +121,15 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <div v-if="!moreInfo">
-                                                <li @click="showInfo"><a class="dropdown-item">Info</a></li>
-                                                <li @click="deliteMessage(message)"><a class="dropdown-item">Elimina</a></li>
+                                                <li @click="showInfo"><a class="dropdown-item my-text-green">Info</a></li>
+                                                <li @click="deliteMessage(message)"><a class="dropdown-item my-text-green">Elimina</a></li>
                                             </div>
                                             <div v-else="">
                                                 <div class="d-flex justify-content-around">
-                                                    <i class="fa-solid fa-arrow-left clickable" @click="showInfo"></i>
-                                                    <span class="text-center">INVIATO IL:</span>
+                                                    <i class="fa-solid fa-arrow-left clickable my-text-green" @click="showInfo"></i>
+                                                    <span class="text-center bold my-text-green">INVIATO IL:</span>
                                                 </div>
-                                                <div >{{message.date}}</div>
+                                                <div>{{message.date}}</div>
                                                 <div v-if="message.status === 'sent'">Da: te</div>
                                                 <div v-else>Da: {{contacts[activeContact].name}}</div>
                                             </div>
