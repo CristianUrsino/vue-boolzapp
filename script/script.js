@@ -34,7 +34,8 @@ const { createApp } = Vue;
       },
       dataLastMassage(i){
         let lastM = this.lastMessage(i, 'received');
-        return lastM.date;
+        lastM = lastM.date.split(' ');
+        return lastM[1];
       },
       lastMessage(i, status){
         if(status === '') return this.contacts[i].messages[this.contacts[i].messages.length - 1];
@@ -140,6 +141,6 @@ const { createApp } = Vue;
     created() {
       setTimeout(()=>{
         this.splashDisplayNone = true;
-      },3000)
+      },300)
     }
   }).mount('#app')

@@ -84,7 +84,7 @@
                                     <div>{{contact.name}}</div>
                                     <div class="my-text-secondary">{{LastMessageReceived(index)}}</div>
                                 </div>
-                                <div class="my-text-secondary time">{{dataLastMassage(activeContact)}}</div>
+                                <div class="my-text-secondary time">{{dataLastMassage(index)}}</div>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                 <div class="col-12 col-md-8">
                     <div class="row h-100 flex-column flex-nowrap debug ">
                         <!-- RIGHT HEADER -->
-                        <div class="headers debug d-flex justify-content-between ">
+                        <div v-if="firstClickOnContacts" class="headers debug d-flex justify-content-between ">
                             <div class="d-flex gap-1 align-items-center">
                                 <figure class="img-contact ms-2"><img :src="contacts[activeContact].avatar" alt="immagine di 'Marco'"></figure>
                                 <div>
