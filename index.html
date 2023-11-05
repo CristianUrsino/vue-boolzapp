@@ -20,8 +20,14 @@
 </head>
 <body>
     
+    
+
     <div id="app">
-        <div class="debug container h-100">
+        <div id="loading-wrapper" :class="{'d-none':splashDisplayNone}">
+            <div id="loading-text">LOADING</div>
+            <div id="loading-content"></div>
+        </div>
+        <div class="debug container h-100" :class="{'d-none': !splashDisplayNone}">
             <div class="row h-100 flex-nowrap">
                 <div class="col-12 col-md-4">
                     <!-- ----LEFT----- -->
@@ -71,8 +77,8 @@
                         <!-- CONTACTS -->
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
                             <div v-for="(contact,index) in filteredContacts" :key="contact.id"
-                             :class="[{'active': index === activeContact}, 'contact', 'position-relative', 'd-flex', 'gap-2', 'align-items-center']"
-                             @click="isTheActive(index)">
+                             :class="[{'active': index === activeContact && firstClickOnContacts}, 'contact', 'position-relative', 'd-flex', 'gap-2', 'align-items-center']"
+                             @click="isTheActive(index),firstClickOnContacts = true">
                                 <figure class="img-contact ms-2"><img :src="contact.avatar" :alt="'immagine di'+ contact.name"></figure>
                                 <div>
                                     <div>{{contact.name}}</div>
@@ -111,10 +117,15 @@
                             </div>
                         </div>
                         <!-- CHAT CONTAINER -->
-                        <div class="chat-container debug overflow-y-scroll h-0 flex-grow-1 py-4 px-5 " >
+                        <div :class="['chat-container',{'overflow-y-scroll' : firstClickOnContacts} ,'debug','+h-0', 'flex-grow-1', 'py-4', 'px-5' ]" >
                             
-                            <div v-for="message in contacts[activeContact].messages" :class="['debug', 'p-1', 'message-'+message.status, 'clearfix']" >
-                                <div class="rounded debug d-flex align-items-center align-content-center">
+                            <div v-if="!firstClickOnContacts" class="d-flex flex-column justify-content-center align-items-center align-content-center h-100 my-text-green">
+                                <div class="bold mb-3">BOOLZAPP</div>
+                                <div>CLICCA UN CONTTATTO PER INIZIARE O CONTINUARE LA CONVERSAZIONE</div>
+                            </div>
+
+                            <div v-else v-for="message in contacts[activeContact].messages" :class="['debug', 'p-1', 'message-'+message.status, 'clearfix']">
+                                <div class="rounded debug d-flex align-items-center align-content-center" >
                                     <div class="mb-2 mt-1 pe-2">{{message.message}}</div>
                                     <div class="dropdown  my-text-secondary">
                                         <a class="dropdown-toggle  my-text-secondary" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -138,9 +149,10 @@
                                     <div class="my-text-secondary date">{{message.date}}</div>
                                 </div>
                             </div>
+
                         </div>
                         <!-- MESSAGE CONTROLLER -->
-                        <div class="message-controller debug container-fluid">
+                        <div v-if="firstClickOnContacts" class="message-controller debug container-fluid">
                             <div class="row flex-nowrap align-items-center my-2">
                                 <div class="col-1 text-center">
                                     <i class="fa-regular fa-face-smile fa-lg"></i>

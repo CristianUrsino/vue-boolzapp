@@ -20,6 +20,8 @@ const { createApp } = Vue;
         newName:'',
         newAvatar:'',
         errorNewContact:false,
+        firstClickOnContacts: false,
+        splashDisplayNone : false,
       }
     },
     methods:{
@@ -60,10 +62,11 @@ const { createApp } = Vue;
       response(){
         this.contactStatus = true;
         this.contactStatusText = 'online';
+        const currentContactId = this.activeContact;
         setTimeout(() => {
           this.contactStatusText = 'Sta scrivendo...';
           setTimeout(()=>{
-            this.contacts[this.activeContact].messages.push({
+            this.contacts[currentContactId].messages.push({
               date: completeDate,
               message: 'ok',
               status: 'received'
@@ -132,8 +135,11 @@ const { createApp } = Vue;
           }
         );
         this.errorNewContact = false;
-      }
+      },
     },
-    amounted() {
+    created() {
+      setTimeout(()=>{
+        this.splashDisplayNone = true;
+      },3000)
     }
   }).mount('#app')
