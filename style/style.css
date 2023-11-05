@@ -146,6 +146,7 @@ i{
     padding: 5px;
     word-break: break-all;
 }
+
 .message-controller i{
     color: var(--color-dark-grey);
 }
@@ -159,9 +160,9 @@ i{
     height: 100vh;
     left: 0;
     top: 0;
-  }
+}
 
-  #loading-text {
+#loading-text {
     display: block;
     color: var(--color-green);
     width: 100px;
@@ -170,26 +171,26 @@ i{
     font-size: 20px;
     transform: translate(100%,0);
     font-weight: bold;
-  }
+}
 
-  #loading-content {
+#loading-content {
     display: block;
     position: relative;
     right: 34px;
     bottom: 5px;
     width: 170px;
     height: 170px;
-  }
+}
 
-  #loading-content {
+#loading-content {
     border: 10px solid transparent;
     border-top-color: var(--color-green);
     border-bottom-color:var(--color-green);
     border-radius: 50%;
     animation: loader 2s linear infinite;
-  }
+}
 
-  @keyframes loader {
+@keyframes loader {
     0% {
       transform: rotate(0deg);
     }
@@ -197,4 +198,11 @@ i{
     100% {
       transform: rotate(360deg);
     }
-  }
+}
+
+@media screen and (max-width:380px){
+    .message-received>div,
+.message-sent>div{
+    width: auto;
+}
+}

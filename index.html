@@ -29,8 +29,8 @@
         </div>
         <div class="debug container h-100" :class="{'d-none': !splashDisplayNone}">
             <div class="row h-100 flex-nowrap">
-                <div class="col-12 col-md-4">
-                    <!-- ----LEFT----- -->
+                <!-- ----LEFT----- -->
+                <div :class="[{'d-none': showChatMobile},'col-12', 'col-md-4', 'd-md-block']">
                     <div class="row h-100 flex-column flex-nowrap debug ">
                         <!-- HEADER  -->
                         <div class="col-12 debug header d-flex justify-content-between headers">
@@ -78,7 +78,7 @@
                         <div class="col-12 debug contact-container flex-grow-1 overflow-y-auto h-0 p-0">
                             <div v-for="(contact,index) in filteredContacts" :key="contact.id"
                              :class="[{'active': index === activeContact && firstClickOnContacts}, 'contact', 'position-relative', 'd-flex', 'gap-2', 'align-items-center']"
-                             @click="isTheActive(index),firstClickOnContacts = true">
+                             @click="isTheActive(index), toggleShowChatMobile(), firstClickOnContacts = true">
                                 <figure class="img-contact ms-2"><img :src="contact.avatar" :alt="'immagine di'+ contact.name"></figure>
                                 <div>
                                     <div>{{contact.name}}</div>
@@ -90,11 +90,12 @@
                     </div>
                 </div>
                 <!-- --------RIGHT-------- -->
-                <div class="col-12 col-md-8">
+                <div :class="[{'d-none': !showChatMobile},'col-12', 'col-md-8', 'd-md-block']">
                     <div class="row h-100 flex-column flex-nowrap debug ">
                         <!-- RIGHT HEADER -->
                         <div v-if="firstClickOnContacts" class="headers debug d-flex justify-content-between ">
                             <div class="d-flex gap-1 align-items-center">
+                                <i @click="toggleShowChatMobile" class="fa-solid fa-arrow-left clickable d-block d-md-none"></i>
                                 <figure class="img-contact ms-2"><img :src="contacts[activeContact].avatar" alt="immagine di 'Marco'"></figure>
                                 <div>
                                     <div>{{contacts[activeContact].name}}</div>
@@ -117,7 +118,7 @@
                             </div>
                         </div>
                         <!-- CHAT CONTAINER -->
-                        <div :class="['chat-container',{'overflow-y-scroll' : firstClickOnContacts} ,'debug','+h-0', 'flex-grow-1', 'py-4', 'px-5' ]" >
+                        <div :class="['chat-container',{'overflow-y-scroll' : firstClickOnContacts} ,'debug','h-0', 'flex-grow-1', 'py-4', 'px-4' ]" >
                             
                             <div v-if="!firstClickOnContacts" class="d-flex flex-column justify-content-center align-items-center align-content-center h-100 my-text-green">
                                 <div class="bold mb-3">BOOLZAPP</div>

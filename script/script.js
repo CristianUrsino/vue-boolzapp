@@ -2,7 +2,8 @@ import {contactsList} from './data.js';
 import {randomInteger} from './utility.js';
 import {pariODispari} from './utility.js';
 const dt = luxon.DateTime;
-const completeDate = dt.now().setLocale('it').toFormat('dd//yyyy hh:mm:ss');
+const completeDate = dt.now().setLocale('it').toFormat('dd/MM/yyyy hh:mm:ss');
+const days = dt.now().setLocale('it').toFormat('dd/MM/yyyy');
 const { createApp } = Vue;
 
   createApp({
@@ -22,6 +23,7 @@ const { createApp } = Vue;
         errorNewContact:false,
         firstClickOnContacts: false,
         splashDisplayNone : false,
+        showChatMobile: false,
       }
     },
     methods:{
@@ -35,6 +37,7 @@ const { createApp } = Vue;
       dataLastMassage(i){
         let lastM = this.lastMessage(i, 'received');
         lastM = lastM.date.split(' ');
+        if(lastM[0] !== days) return lastM[0]
         return lastM[1];
       },
       lastMessage(i, status){
@@ -137,6 +140,9 @@ const { createApp } = Vue;
         );
         this.errorNewContact = false;
       },
+      toggleShowChatMobile(){
+        this.showChatMobile = !this.showChatMobile;
+      }
     },
     created() {
       setTimeout(()=>{
