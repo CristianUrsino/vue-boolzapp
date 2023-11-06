@@ -145,13 +145,36 @@ i{
     min-height: 40px;
     padding: 5px;
     word-break: break-all;
+    color: black;
 }
 
 .message-controller i{
     color: var(--color-dark-grey);
 }
-
-
+/* DARK MODE  */
+.dark-mode .headers,
+.dark-mode .search,
+.dark-mode .contact,
+.dark-mode .message-controller{
+    background-color: #323232;
+    color: white;
+}
+.dark-mode .active{
+    background-color: #d2cfcf;
+    color: #323232;
+}
+.dark-mode .active .my-text-secondary{
+    color: #7e7d7d;
+}
+.dark-mode .my-text-secondary,
+.dark-mode i{
+    color: #c0bfbf;
+}
+.dark-mode .message-received>div{
+background-color: #323232;
+color: white;
+}
+/* SPLASH PAGE */
 #loading-wrapper {
     display: flex;
     justify-content: center;
@@ -199,7 +222,7 @@ i{
       transform: rotate(360deg);
     }
 }
-
+/* RESPONSIVE */
 @media screen and (max-width:380px){
     .message-received>div,
 .message-sent>div{

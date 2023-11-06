@@ -27,7 +27,7 @@
             <div id="loading-text">LOADING</div>
             <div id="loading-content"></div>
         </div>
-        <div class="debug container h-100" :class="{'d-none': !splashDisplayNone}">
+        <div class="debug container h-100" :class="{'dark-mode' : darkMode}" :class="{'d-none': !splashDisplayNone}" :style="{fontSize: fontSize + 'em'}" >
             <div class="row h-100 flex-nowrap">
                 <!-- ----LEFT----- -->
                 <div :class="[{'d-none': showChatMobile},'col-12', 'col-md-4', 'd-md-block']">
@@ -38,7 +38,10 @@
                                 <figure class="img-contact align-self-end"><img src="img/avatar_1.jpg" alt="mia img"></figure>
                                 <div>nome</div>
                             </div>
-                            <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-circle-half-stroke fa-lg clickable" @click="toggleDarkMode"></i>
+                                <i class="fa-solid fa-plus fa-lg clickable" @click="increaseFont"></i>
+                                <i class="fa-solid fa-minus fa-lg clickable" @click="decreaseFont"></i>
                                 <i class="fa-solid fa-circle-notch fa-lg"></i>
                                 <div>
                                     <i class="fa-solid fa-message fa-lg clickable" role="button" data-bs-toggle="dropdown" data-bs-auto-close="inside"></i>
@@ -125,7 +128,7 @@
                                 <div>CLICCA UN CONTTATTO PER INIZIARE O CONTINUARE LA CONVERSAZIONE</div>
                             </div>
 
-                            <div v-else v-for="message in contacts[activeContact].messages" :class="['debug', 'p-1', 'message-'+message.status, 'clearfix']">
+                            <div v-for="message in contacts[activeContact].messages" :class="[{'d-none' : !firstClickOnContacts}, 'debug', 'p-1', 'message-'+message.status, 'clearfix']" ref="messages">
                                 <div class="rounded debug d-flex align-items-center align-content-center" >
                                     <div class="mb-2 mt-1 pe-2">{{message.message}}</div>
                                     <div class="dropdown  my-text-secondary">

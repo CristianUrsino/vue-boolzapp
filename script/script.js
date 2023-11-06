@@ -24,6 +24,8 @@ const { createApp } = Vue;
         firstClickOnContacts: false,
         splashDisplayNone : false,
         showChatMobile: false,
+        fontSize : 1,
+        darkMode: false,
       }
     },
     methods:{
@@ -60,6 +62,9 @@ const { createApp } = Vue;
           });
           this.iconSendMessage = false;
           this.newMessage = '';
+          this.$nextTick(()=>{
+            this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView({behavior: 'smooth'});
+          })
           this.response();
         }
       },
@@ -77,6 +82,7 @@ const { createApp } = Vue;
             });
             this.contactStatusText = 'online';
             setTimeout(()=> {this.contactStatus = false}, 4000);
+            this.$refs.messages[this.$refs.messages.length - 1].scrollIntoView({behavior: 'smooth'});
           },2500);
         }, 1500);
       },
@@ -142,11 +148,23 @@ const { createApp } = Vue;
       },
       toggleShowChatMobile(){
         this.showChatMobile = !this.showChatMobile;
+      },
+      increaseFont(){
+        this.fontSize += 0.1;
+      },
+      decreaseFont(){
+        this.fontSize -= 0.1;
+      },
+      toggleDarkMode(){
+        this.darkMode = !this.darkMode;
       }
     },
     created() {
       setTimeout(()=>{
         this.splashDisplayNone = true;
-      },300)
+      },300);
+    },
+    mounted() {
+      console.log(this.$refs.messages[this.$refs.messages.length - 1]);
     }
   }).mount('#app')
